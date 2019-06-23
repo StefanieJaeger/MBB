@@ -14,7 +14,7 @@ def handle(msg):
     print(content_type, chat_type, chat_id)
 
     if content_type == 'text' and msg["text"] == '/update':
-        bot.sendMessage(chat_id, rss.getLastEntry()["summary"], parse_mode="html")
+        bot.sendMessage(chat_id, rss.getLastEntry()["title"] + "\n" + rss.getLastEntry()["summary"], parse_mode="html")
 
 def sendNew():
     print()
