@@ -1,7 +1,10 @@
 import feedparser
 import re
 
-feed = feedparser.parse("https://moodle.bbbaden.ch/rss/file.php/1/***REMOVED***/blog/user/9999/rss.xml")
+import data_manager
+
+token = data_manager.getCredentials("moodle")
+feed = feedparser.parse("https://moodle.bbbaden.ch/rss/file.php/1/" + token + "/blog/user/9999/rss.xml")
 
 
 def sanitiseHTML(html):

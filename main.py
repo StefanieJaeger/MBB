@@ -1,10 +1,10 @@
 import telepot, time
-from pprint import pprint
 from telepot.loop import MessageLoop
-import rss
 
-token = "***REMOVED***" # print("token: " token = input()
-chatid = ***REMOVED*** # print("chat_id: ") chatid = input()
+import rss, data_manager
+
+
+token = data_manager.getCredentials("telegram")
 bot = telepot.Bot(token)
 botMe = bot.getMe()
 
