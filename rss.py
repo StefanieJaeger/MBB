@@ -4,8 +4,11 @@ import re
 import data_manager
 
 token = data_manager.getCredentials("moodle")
-feed = feedparser.parse("https://moodle.bbbaden.ch/rss/file.php/1/" + token + "/blog/user/9999/rss.xml")
+feed = None
 
+def updateRSS():
+    global feed
+    feed = feedparser.parse("https://moodle.bbbaden.ch/rss/file.php/1/" + token + "/blog/user/9999/rss.xml")
 
 def sanitiseHTML(html):
     for line in html:
@@ -16,6 +19,7 @@ def sanitiseHTML(html):
 
 
 def getAllEntries():
+    updateRSS()
     entries = {}
     for entry in feed.entries:
         entries[entry.published, "title"] = [feed.entries[0].title]
@@ -27,6 +31,7 @@ def getAllEntries():
 
 
 def getLastEntry():
+    updateRSS()
     entry = {}
     entry["published"] = feed.entries[0].published
     entry["title"] = feed.entries[0].title
